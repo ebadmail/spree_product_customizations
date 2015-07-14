@@ -1,0 +1,4 @@
+<!-- insert_bottom '[data-hook="admin_tabs"]' -->
+<ul class="nav nav-sidebar">
+  <%= tab(:customization_types, url: spree.admin_product_customization_types_path, icon: "dashboard") %>
+</ul>
