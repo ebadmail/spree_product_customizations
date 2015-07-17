@@ -1,6 +1,21 @@
 <tr class="customization_value type fields" id="<%= dom_id(f.object) %>">
-  <td><%= f.text_field :name, :readonly => true, :disabled => true %></td>
-  <td><%= f.text_field :presentation %></td>
-  <td><%= f.text_area :description, {:style=>'height: auto;', :rows => 3, :cols => 25} %></td>
-  <td class="actions"><%= link_to_remove_nested_fields t("remove"), f, :no_text => true, :nest => "product_customization_type" %></td>
+  <td><%= f.text_field :name, readonly: true, disabled: true, class: "form-control" %></td>
+  <td><%= f.text_field :presentation, class: "form-control" %></td>
+  <td>
+    <%= f.text_area :description, rows: 3, class: "form-control" %>
+  </td>
+  <%# Check `url` is correct & deleting works, this has changed over time %>
+  <% url = f.object.persisted? ?
+    remove_admin_product_customization_type_customizable_product_option_path(
+      f.object.product_customization_type_id, f.object.id
+    ) : '#'
+  %>
+  <td class="actions">
+    <%= link_to_with_icon(
+      'delete', '', url,
+      class: "spree_remove_fields btn btn-sm btn-danger",
+      data: {action: 'remove'},
+      title: Spree.t(:remove)
+    ) + f.hidden_field(:_destroy) %>
+  </td>
 </tr>
