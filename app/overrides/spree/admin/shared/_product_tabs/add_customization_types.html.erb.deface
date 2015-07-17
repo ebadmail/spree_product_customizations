@@ -1,0 +1,4 @@
+<!-- insert_bottom "[data-hook='admin_product_tabs']" -->
+<%= content_tag :li, class: ("active" if current == :customization_types) do %>
+  <%= link_to_with_icon "dashboard", Spree.t(:customization_types), selected_admin_product_product_customization_types_url(@product) %>
+<% end %>

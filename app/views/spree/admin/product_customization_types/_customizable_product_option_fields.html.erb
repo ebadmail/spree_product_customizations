@@ -12,9 +12,9 @@
   %>
   <td class="actions">
     <%= link_to_with_icon(
-      'delete', '', url,
+      "delete", '', url,
       class: "spree_remove_fields btn btn-sm btn-danger",
-      data: {action: 'remove'},
+      data: { action: "remove" },
       title: Spree.t(:remove)
     ) + f.hidden_field(:_destroy) %>
   </td>

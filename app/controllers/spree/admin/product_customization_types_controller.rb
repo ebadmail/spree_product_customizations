@@ -1,23 +1,23 @@
 module Spree
   class Admin::ProductCustomizationTypesController < Admin::ResourceController
-    before_filter :load_product, :only => [:selected, :available, :remove]
-    before_filter :load_calculators, :only => [:new, :edit]
+    before_filter :load_product, only: [:selected, :available, :remove]
+    before_filter :load_calculators, only: [:new, :edit]
 
     def load_calculators
       @calculators = ProductCustomizationType.calculators.sort_by(&:name)
     end
 
     def index
-      @product_customization_type= ProductCustomizationType.all
+      @product_customization_type = ProductCustomizationType.all
     end
 
     def edit
-      @product_customization_type= ProductCustomizationType.find(params[:id])
+      @product_customization_type = ProductCustomizationType.find(params[:id])
 
       # Is this an edit immediately after create?  If so, need to create
       # calculator-appropriate default options
       if @product_customization_type.customizable_product_options.empty?
-        if !@product_customization_type.calculator.nil?
+        unless @product_customization_type.calculator.nil?
 
           opts = @product_customization_type.calculator.create_options
           @product_customization_type.customizable_product_options.concat opts if opts
@@ -33,7 +33,7 @@ module Spree
 
     def available
       set_available_product_customization_types
-      render :layout => false
+      render layout: false
     end
 
     def selected
@@ -43,16 +43,15 @@ module Spree
     def remove
       @product.product_customization_types.delete(@product_customization_type)
       @product.save
-      flash.notice = I18n.t("notice_messages.product_customization_type_removed")
-      redirect_to selected_admin_product_product_customization_types_url(@product)
+      @product_customization_types = @product.product_customization_types
     end
 
-
-    # AJAX method for selecting an existing option type and associating with the current product
+    # AJAX method to select an existing option type & associate with product
     def select
       @product = Product.friendly.find(params[:product_id])
 
-      @product.product_customization_types << ProductCustomizationType.find(params[:id])
+      @product.product_customization_types <<
+        ProductCustomizationType.find(params[:id])
       @product.save
       @product_customization_types = @product.product_customization_types
       set_available_product_customization_types
@@ -68,8 +67,8 @@ module Spree
       end
     end
 
-
     private
+
     def load_product
       @product = Product.friendly.find(params[:product_id])
     end
