@@ -1,0 +1,44 @@
+<!-- insert_top '[data-hook="inside_product_cart_form"]' -->
+
+<% unless @product.product_customization_types.blank? %>
+  <div id="product-customizations" class="col-md-6">
+    <%# for finding optional partials %>
+    <% lookup = ActionView::LookupContext.new(
+      ActionController::Base.view_paths,
+      formats: [:html]
+    ) %>
+
+    <h3 class="product-section-title"><%= t(:customizations) %></h3>
+
+    <% @product.product_customization_types.each do |pct| %>
+      <% param_prefix = "options[product_customizations][]" %>
+
+      <%# render a custom partial based on the customization name? %>
+      <% partial_name = "spree/products/customizations/customization_type/#{pct.name}" %>
+      <% if lookup.exists?(partial_name, nil, true) %>
+        <%= render partial: partial_name, locals: { product_customization_type: pct, param_prefix: param_prefix } %>
+      <% else %>
+        <%# render a custom partial based on the calculator name? %>
+        <% partial_name = "spree/products/customizations/calculator_type/#{calculator_name(pct)}" %>
+
+        <% if lookup.exists?(partial_name, nil, true) %>
+          <%= render partial: partial_name, locals: { product_customization_type: pct, param_prefix: param_prefix } %>
+        <% else %>
+          <h6><%= pct.presentation %></h6>
+
+	        <% unless pct.description.blank? %>
+	          <p><%=  pct.description %></p>
+	        <% end %>
+
+          <dl>
+            <% pct.customizable_product_options.each do |option| %>
+              <dt><%= option.presentation %></dt>
+              <%= hidden_field_tag "#{param_prefix}[customization_id]", pct.id %>
+              <dd><%= text_field_tag "#{param_prefix}[option_id]", option.id, style: "float: left", class: "customization" %></dd>
+            <% end %>
+          </dl>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
