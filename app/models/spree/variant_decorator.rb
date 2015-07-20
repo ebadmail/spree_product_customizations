@@ -27,16 +27,14 @@ module Spree
       options.keys.map { |key|
         m = "#{key}_price_modifier_amount_in".to_sym
         if self.respond_to? m
-          v = self.send(m, currency, options[key])
-          options.delete(key) # Very important hack!
-          v
+          send m, currency, options.delete(key) # important delete hack!
         else
           0
         end
       }.sum
     end
 
-    def product_customizations_price_modifier_amount_in(currency, options)
+    def product_customizations_price_modifier_amount_in(_currency, options)
       # we need to build (but not save) a line item so we can
       # reuse some code.  A small price to pay IMO
       li = LineItem.new
