@@ -1,10 +1,10 @@
 <% # render the (possibly shared) calculator %>
 
-<% width_dom_id = "product_area_input_#{product_customization_type.customizable_product_options.first.id}" %>
+<% width_dom_id  = "product_area_input_#{product_customization_type.customizable_product_options.first.id}"  %>
 <% height_dom_id = "product_area_input_#{product_customization_type.customizable_product_options.second.id}" %>
 
-<%= render :partial => "spree/products/customizations/calculator/#{calculator_name(product_customization_type)}",
-           :locals => {:calculator=>product_customization_type.calculator} %>
+<%= render partial: "spree/products/customizations/calculator/#{calculator_name product_customization_type}",
+           locals:  {calculator: product_customization_type.calculator} %>
 
   <% # add the 'change' listener for this particular file input, which will make use of the calculator above %>
 
@@ -28,30 +28,30 @@
   <% end %>
 
 <%= field_set_tag product_customization_type.presentation do %>
-  <ol>
-    <li>
-      <% option = product_customization_type.customizable_product_options.first %>
-
-  	  <label for="<%= width_dom_id %>"><%= option.presentation %></label>
-      <% # create a slightly shorter dom_id field below.  I wish I could make use of dom_id for all strings that had [ && ] %>
-	    <%= text_field_tag "#{param_prefix}[#{option.id}]",
-                         "",
-                         :id => width_dom_id ,:style=>"float: left;", :class=>"customization" %>
-
-    </li>
-
-
-    <li>
-      <% option = product_customization_type.customizable_product_options.second %>
-
-  	  <label for="<%= height_dom_id %>"><%= option.presentation %></label>
-	    <%= text_field_tag "#{param_prefix}[#{option.id}]",
-                         "",
-                         :id => height_dom_id ,:style=>"float: left;", :class=>"customization" %>
-    </li>
-
+  <% option = product_customization_type.customizable_product_options.first %>
+  
+  <div class="form-group">   
+    <% # create a slightly shorter dom_id field below.  I wish I could make use of dom_id for all strings that had [ && ] %>
+    <%= hidden_field_tag "#{param_prefix}[customization_id]", product_customization_type.id %>
+    <%= hidden_field_tag "#{param_prefix}[option_id]", product_customization_type.customizable_product_options.first.id %>
+    
+    <div>
+      <label for="<%= width_dom_id %>"><%= option.presentation %></label>
+  	    <%= text_field_tag "#{param_prefix}[option_value]", "",
+    	                     :id => width_dom_id ,:style=>"float: left;", :class=>"customization form-control " %>
+    </div>
+    
+    <% option = product_customization_type.customizable_product_options.second %>
+    <%= hidden_field_tag "#{param_prefix}[customization_id]", product_customization_type.id %>
+    <%= hidden_field_tag "#{param_prefix}[option_id]", product_customization_type.customizable_product_options.second.id %>
+    
+    <div>                     
+      <label for="<%= height_dom_id %>"><%= option.presentation %></label>
+	    <%= text_field_tag "#{param_prefix}[option_value]", "",
+                         :id => height_dom_id ,:style=>"float: left;", :class=>"customization form-control " %>
+    </div>
+                 
     <% # the price is stored here on change, and later collected by the product-wide updatePrice() %>
     <%= hidden_field_tag "customization_price", "0", :class => "customization_price" %>
-
-  </ol>
-<% end # field_set_tag %>
+  </div>
+<% end %>
