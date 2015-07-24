@@ -1,0 +1,2 @@
+<!-- insert_bottom "[data-hook='cart_item_description']" -->
+<%= render partial: "spree/shared/additional_line_item_fields", locals: { item: line_item } %>
