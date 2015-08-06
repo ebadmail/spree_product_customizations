@@ -3,11 +3,11 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_product_customizations'
   s.version     = '2.2.1'
-  s.summary     = 'TODO: Add gem summary here'
-  s.description = 'TODO: Add (optional) gem description here'
+  s.summary     = 'Adds custom product options to spree'
+  s.description = 'Adds product customization options and calculators for engraving, area, image and constant multiplier'
   s.required_ruby_version = '>= 1.9.3'
 
-  # s.author    = 'You'
+  s.author    = 'You'
   # s.email     = 'you@example.com'
   # s.homepage  = 'http://www.spreecommerce.com'
 
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency('carrierwave')
+  s.add_dependency 'carrierwave', '~> 0.9'
   s.add_dependency('mini_magick')
   s.add_dependency 'spree_core', '~> 3.0.0'
   s.add_dependency 'spree_frontend', '~> 3.0.0'
