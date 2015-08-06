@@ -1,5 +1,6 @@
 <dl>
   <%# TODO: group multi-select options (e.g. toppings) %>
+  <% item = item.line_item if item.respond_to? :line_item %>
   <% item.product_customizations.each do |customization| %>
     <% next if customization.customized_product_options.all? { |cpo| cpo.empty? } %>
 
