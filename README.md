@@ -1,9 +1,13 @@
 SpreeProductCustomizations
 ==========================
 
-This is a NOT YET READY skeleton for a newer version of 1/2 of the functionality of spree_flexi_variants.
+This Spree extension allows adding custom calculations to products that affect the pricing. E.g. you could sell fabric by the metre with a custom multiplier.
 
-I'm extracting the product customizations code out into this extension, and updating it for spree master.
+This is a newer version of 1/2 of the functionality of spree_flexi_variants. It includes the product customizations without the ad-hoc options.
+
+It seems to be working now, if you see any bugs please open an issue or send a pull request.
+
+Master will be the most up to date branch. As we update master for newer versions of Spree we'll create a branch for the previous supported version.
 
 Installation
 ------------
