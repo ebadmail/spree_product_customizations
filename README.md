@@ -25,6 +25,35 @@ bundle
 bundle exec rails g spree_product_customizations:install
 ```
 
+Custom Calculators
+------------------
+
+You can add your own calculators to your app without having to fork this repo. 
+
+First create your calculator files and put them in the right folders like so. Look in the same folders in this repo for the built in calculators; copy and modify the one that's closest to what you need.
+
+```
+app/models/spree/calculator/curtain_area.rb
+app/views/spree/products/customizations/calculator/_curtain_area.html.erb
+app/views/spree/products/customizations/calculator_type/_curtain_area.html.erb
+```
+
+Then register the calculator(s) in your `config/application.rb`:
+
+```ruby
+module MyWebsite
+  class Application < Rails::Application
+    ...
+
+    initializer "MyWebsite.register.calculators" do |app|
+      app.config.spree.calculators.product_customization_types.push(
+        Spree::Calculator::CurtainArea
+      )
+    end
+  end
+end
+```
+
 Testing
 -------
 
