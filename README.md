@@ -15,7 +15,7 @@ Installation
 Add spree_product_customizations to your Gemfile:
 
 ```ruby
-gem 'spree_product_customizations'
+gem "spree_product_customizations", github: "spree-contrib-variants/spree_product_customizations", branch: "master"
 ```
 
 Bundle your dependencies and run the installation generator:
