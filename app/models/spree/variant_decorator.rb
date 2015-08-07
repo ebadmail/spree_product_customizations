@@ -41,6 +41,7 @@ module Spree
       # we need to build (but not save) a line item so we can
       # reuse some code.  A small price to pay IMO
       li = LineItem.new
+      li.variant = self # So calculators can access the base price
       li.build_product_customizations options["product_customizations"]
       options["product_customizations"] = li.product_customizations
       li.product_customizations.map(&:price).sum
