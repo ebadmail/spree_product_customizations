@@ -1,6 +1,9 @@
 module Spree
   Order.class_eval do
     def product_customizations_match(line_item, new_customizations)
+      # Guard against items without customizations.
+      return true if new_customizations.empty?
+      
       existing_customizations = line_item.product_customizations
 
       if new_customizations.kind_of? ActiveSupport::HashWithIndifferentAccess
