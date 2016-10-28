@@ -26,7 +26,8 @@ module SpreeProductCustomizations
                                                                     Spree::Calculator::AmountTimesConstant,
                                                                     Spree::Calculator::ProductArea,
                                                                     Spree::Calculator::CustomizationImage,
-                                                                    Spree::Calculator::NoCharge
+                                                                    Spree::Calculator::NoCharge,
+                                                                    Spree::Calculator::Yardage
                                                                    ]
     end
 
