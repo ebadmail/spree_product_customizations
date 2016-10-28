@@ -18,9 +18,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'carrierwave', '~> 0.9'
   s.add_dependency('mini_magick')
-  s.add_dependency 'spree_core', '>= 3.2.0', '< 3.3'
-  s.add_dependency 'spree_frontend', '>= 3.2.0', '< 3.3'
-  s.add_dependency 'spree_backend', '>= 3.2.0', '< 3.3'
+  s.add_dependency 'spree_core', '~> 3.2.0.beta1'
+  s.add_dependency 'spree_frontend', '~> 3.2.0.beta1'
+  s.add_dependency 'spree_backend', '~> 3.2.0.beta1'
 
   s.add_development_dependency 'capybara', '~> 2.1'
   s.add_development_dependency 'coffee-rails'
