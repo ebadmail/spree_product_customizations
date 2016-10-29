@@ -10,7 +10,7 @@ module Spree
 
         # Allowing attribut option_value: :cusomization_image overrides option_value as a string so we assign it here.
         if cust_opt_val.has_key? :customization_image_id
-          customization[cust_opt_val[:option_id]] = {customization_image: cust_opt_val[:customization_image_id]}
+          customization[cust_opt_val[:option_id]] = {customization_image_id: cust_opt_val[:customization_image_id]}
         else
           customization[cust_opt_val[:option_id]] = cust_opt_val[:option_value]
         end
