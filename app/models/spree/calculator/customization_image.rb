@@ -27,7 +27,7 @@ module Spree
       # expecting only one CustomizedProductOption
       opt = product_customization.customized_product_options.detect {|cpo| cpo.customizable_product_option.name == "customization_image" } rescue ''
 
-      if opt && opt.customization_image?
+      if opt && opt.customization_image.present?
         preferred_price
       else
         0.00   # no image was uploaded
