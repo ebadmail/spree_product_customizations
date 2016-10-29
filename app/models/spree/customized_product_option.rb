@@ -5,7 +5,7 @@ module Spree
     belongs_to :product_customization
     belongs_to :customizable_product_option
 
-    mount_uploader :customization_image, CustomizationImageUploader
+    belongs_to :customization_image, :class_name => 'Image'
 
     def empty?
       value.empty? && !customization_image?

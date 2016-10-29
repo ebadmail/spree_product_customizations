@@ -9,8 +9,8 @@ module Spree
         customization = customizations[cust_opt_val[:customization_id]] ||= {}
 
         # Allowing attribut option_value: :cusomization_image overrides option_value as a string so we assign it here.
-        if cust_opt_val.has_key? :customization_image
-          customization[cust_opt_val[:option_id]] = {customization_image: cust_opt_val[:customization_image]}
+        if cust_opt_val.has_key? :customization_image_id
+          customization[cust_opt_val[:option_id]] = {customization_image: cust_opt_val[:customization_image_id]}
         else
           customization[cust_opt_val[:option_id]] = cust_opt_val[:option_value]
         end
@@ -36,7 +36,7 @@ module Spree
             cpo.value = user_input
           else
             cpo.value = ""
-            cpo.customization_image = user_input[:customization_image]
+            cpo.customization_image_id = user_input[:customization_image_id]
           end
         end
       end
