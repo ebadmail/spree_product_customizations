@@ -28,7 +28,10 @@ module Spree
       opt = product_customization.customized_product_options.detect do |cpo|
         cpo.customizable_product_option.name == "yards"
       end rescue 0.0
-      opt.value.to_i * variant.price
+
+      # we multiply to get the pricing for number of yards, and then subtract the extra cost associated with the one
+      # variant line item
+      ((opt.value.to_i * variant.price) - variant.price)
     end
 
     def valid_configuration?(_product_customization)
