@@ -8,7 +8,7 @@ module Spree
     belongs_to :customization_image, :class_name => 'Image'
 
     def empty?
-      value.empty? && !customization_image?
+      value.empty? && !customization_image.nil?
     end
   end
 end
