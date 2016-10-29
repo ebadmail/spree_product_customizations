@@ -44,7 +44,7 @@ module Spree
       li.variant = self # So calculators can access the base price
       li.build_product_customizations options["product_customizations"]
       options["product_customizations"] = li.product_customizations
-      li.product_customizations.map(&:price).sum
+      li.product_customizations.map { |pc| pc.price(self) }.sum
     end
   end
 end
