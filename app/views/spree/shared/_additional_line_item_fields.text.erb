@@ -9,8 +9,8 @@
          <% if lookup.exists?("spree/products/#{partial}",nil,true) %>
             <%= render :partial => "spree/orders/custom_fields/#{partial}", :locals=>{:option => option} %>
          <% else %>
-              <% if option.customization_image? %>
-                <%= option.customizable_product_option.presentation %> = <%= File.basename option.customization_image.url %>
+              <% if option.customization_image.present? %>
+                <%= option.customizable_product_option.presentation %> = <%= File.basename option.customization_image.name %>
               <% else %>
                 <%= option.customizable_product_option.presentation %> = <%= option.value %>
               <% end %>
