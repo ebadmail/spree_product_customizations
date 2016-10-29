@@ -16,7 +16,7 @@
           <%= render partial: "spree/orders/custom_fields/#{partial}", locals: { option: option } %>
         <% else %>
           <% if option.customization_image.present? %>
-            <%= image_tag(option.customization_image.name) %>
+            <%= option.customization_image.name %>
           <% else %>
             <p><%= option.customizable_product_option.presentation %> = <%= option.value %></p>
           <% end %>
