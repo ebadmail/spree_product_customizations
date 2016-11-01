@@ -5,7 +5,7 @@ module Spree
     belongs_to :product_customization
     belongs_to :customizable_product_option
 
-    belongs_to :customization_image, :class_name => 'Image', :foreign_key => 'customization_image_id'
+    belongs_to :customization_image, :class_name => '::Image', :foreign_key => 'customization_image_id'
 
     def empty?
       value.empty? && customization_image.nil?
