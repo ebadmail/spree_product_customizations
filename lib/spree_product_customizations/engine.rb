@@ -27,7 +27,8 @@ module SpreeProductCustomizations
                                                                     Spree::Calculator::ProductArea,
                                                                     Spree::Calculator::CustomizationImage,
                                                                     Spree::Calculator::NoCharge,
-                                                                    Spree::Calculator::Yardage
+                                                                    Spree::Calculator::Yardage,
+                                                                    Spree::Calculator::CustomPrint
                                                                    ]
     end
 
