@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'spree_frontend', spree_version
   s.add_dependency 'spree_backend', spree_version
 
-  s.add_dependency 'carrierwave', '~> 0.9'
+  s.add_dependency 'carrierwave', '~> 1.2.3'
   s.add_dependency('mini_magick')
 
   s.add_development_dependency 'capybara', '~> 2.1'
